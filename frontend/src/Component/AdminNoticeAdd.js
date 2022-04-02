@@ -9,21 +9,21 @@ const set={
  function AddNotice(){
 
           const [topic, settopic] = useState("");
+          const [date, setdate] = useState("");
           const [description, setdescription] = useState("");
-          const [postCategory, setpostCategory] = useState("");
 
         function sendData(){
           
 
-          const newstudent = {
+          const newNotice = {
 
             topic,
-            description,
-            postCategory
+            date,
+            description
           }
          
-          axios.post("http://localhost:8001/post/save",newstudent).then(()=>{
-               alert("Add Student")
+          axios.post("http://localhost:8001/Notice/save",newNotice).then(()=>{
+               alert("Add Notice")
           }).catch((err)=>{
                alert(err)
           })
@@ -50,13 +50,13 @@ const set={
               <label style={{fontSize:"20px"}}>Select date : </label><br/>
                  <input type="date" id="name"  style={{borderRadius:"15px", width:"400px", height:"40px", padding:"10px"}}
                     onChange={(e)=>{
-                          settopic(e.target.value);
+                          setdate(e.target.value);
                 }} /><br/>
 
               <label style={{fontSize:"20px"}}>Enter Notice : </label><br/>
                  <input type="box" id="name"  style={{borderRadius:"15px", width:"400px", height:"40px"}}
                     onChange={(e)=>{
-                          settopic(e.target.value);
+                          setdescription(e.target.value);
                 }} /><br/><br/>
               <center>
              <button type="submit" class="btn btn-primary" >Submit</button>

@@ -8,6 +8,7 @@ const multer = require('multer');
 const app = express();
 
 //import route
+const NoticeRoutes = require('./Routes/AdminNotice');
 
 
 //app middleware
@@ -15,13 +16,12 @@ app.use(bodyParser.json());
 app.use(cors());
 //app.use(multer());
 
-app.use(postRoutes);
-app.use(productRoutes);
-app.use(image);
+app.use(NoticeRoutes);
+
 
 
 const PORT = 8001;
-const DB_URL = 'mongodb+srv://pamitha:pamitha@database1.gqpga.mongodb.net/test?retryWrites=true&w=majority';
+const DB_URL = 'mongodb+srv://pamitha:pamitha@database1.gqpga.mongodb.net/AFPROJECT?retryWrites=true&w=majority';
 
 mongoose.connect(DB_URL)
 .then(() =>{
