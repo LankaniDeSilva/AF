@@ -22,7 +22,21 @@ router.post('/Notice/save', (req,res) =>{
     });
 });
 
+//get posts
 
+router.get('/notice', (req,res) =>{
+    Notices.find().exec((err,Notices)=>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            existingPosts:Notices
+        });
+    });
+});
 
 
 module.exports = router;

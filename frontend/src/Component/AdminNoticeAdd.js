@@ -6,6 +6,7 @@ const set={
   
 }
 
+
  function AddNotice(){
 
           const [topic, settopic] = useState("");
@@ -30,8 +31,11 @@ const set={
         }
 
     return(
-        <center>
+       <div>
+      
+     
 
+        <center>
         <div style={{margin:"10%", padding:"50px", backgroundColor:'orange',borderColor:" solid" }}>
           <table>
               <tr>
@@ -71,6 +75,9 @@ const set={
 </div>
 
 </center>
+
+
+</div>
     )
 }
 export default AddNotice;
