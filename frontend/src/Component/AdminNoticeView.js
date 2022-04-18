@@ -4,50 +4,49 @@ import axios from "axios";
 
 
  export default class Getnotice extends Component{
-     constructor(props){
-         super(props);
+    constructor(props){
+        super(props);
 
-         this.state={
-             notices:[]
-         };
-     }
-
-    componentDidMount(){
-        this.retrivePosts();
+        this.state={
+            notices:[]
+        };
     }
 
-     retrivePosts(){
-         axios.get("http://localhost:8001/notice").then(res =>{
-             if(res.data.success){
-                 this.setState({
-                     notices:res.data.existingPosts
-                 });
-                 console.log(this.state.notices)
-             }
-         })
-     }
+   componentDidMount(){
+       this.retrivePosts();
+   }
 
-   filterData(notices,searchKey){
-
-        const result= notices.filter((notice) =>
-            notice.name.toLowerCase().includes(searchKey)//||
-          //  notice.price.includes(searchKey)||
-           // notice.quentity.includes(searchKey)
-        )
-        this.setState({notices:result})
+    retrivePosts(){
+        axios.get("http://localhost:8001/notice").then(res =>{
+            if(res.data.success){
+                this.setState({
+                    notices:res.data.existingPosts
+                });
+                console.log(this.state.notices)
+            }
+        })
     }
 
-    handleSearchArea = (e) =>{
+  filterData(notices,searchKey){
 
-        const searchKey = e.currentTarget.value;
+       const result= notices.filter((notice) =>
+           notice.topic.toLowerCase().includes(searchKey)||
+           notice.date.includes(searchKey)
+         
+       )
+       this.setState({notices:result})
+   }
 
-         axios.get("http://localhost:8001/notice").then(res =>{
-             if(res.data.success){
-                this.filterData(res.data.existingPosts,searchKey) 
-             }
-         });
-     }
- 
+   handleSearchArea = (e) =>{
+
+       const searchKey = e.currentTarget.value;
+
+        axios.get("http://localhost:8001/notice").then(res =>{
+            if(res.data.success){
+               this.filterData(res.data.existingPosts,searchKey) 
+            }
+        });
+    }
 
     onDelete = (id) =>{
 
@@ -60,52 +59,62 @@ import axios from "axios";
  render(){
       return(
          
-          <div className="container">
-               <h1>All Details</h1>
-               <div className="search">
-                      <lable>Search :</lable>
-                      <input type="search" 
-                         class="form-control" 
-                         name="searchQuary"
-                         onChange={this.handleSearchArea}
-                      />
-                </div>
-             <br/>
-             <table className="table">
-                 <thead>
-                     <tr>
-                         <th scope="col">#</th>
-                         <th scope="col">Topic</th>
-                         <th scope="col">Date</th>
-                         <th scope="col">Description</th>
-                        
-                     </tr>
-                 </thead>
-                 <tbody>
-                     {this.state.notices.map((notices,index) =>(
-                         <tr>
-                             <th scope="row">{index+1}</th>
-                             
-                             <td>
-                                 <a href={`/Notice/${notices._id}`} style={{textDecoration:'none'}}>
-                                 {notices.topic}
+        <div style={{border:"2px solid", margin:"70px", background:" #ffe6ff"}}>
+        <div className="container">
+             <center>
+             <h1 style={{fontFamily:"Abel"}}>All Notices</h1>
+             </center>
+             <div style={{ width:"300px"}}>
+                    <lable>Search :</lable>
+                    <input type="search" 
+                       class="form-control" 
+                       name="searchQuary"
+                       onChange={this.handleSearchArea}
+                    />
+       </div>
+           <br/>
+           <table >
+              
+               <tbody >
+                   {this.state.notices.map((notices,index) =>(
+                       <tr >
+                           <div style={{background:"orange",padding:"10px", paddingRight:"1050px", borderLeft:"6px solid black"}}>
+                               
+                           <tr ><td><img src="../images/note.jpg" style={{width:"40px", height:"40px", borderRadius:"50px"}}/></td>&nbsp;<td><h3 style={{fontFamily:"Abel"}}>{notices.date}</h3></td></tr>
+                           </div>
+                           <center>
+                           <div  style={{paddingLeft:"20px"}}> 
+                           <tr ><h4 style={{fontFamily:"Abel"}}><u>{notices.topic}</u></h4></tr>
+                           </div>
+                           </center>
+                           <div style={{paddingLeft:"20px"}}> 
+                           <tr><p>{notices.description}</p></tr>
+                           </div>
+                           <div style={{paddingLeft:"20px"}}> 
+                           <tr>
+                               <a src="">
+                               <p>{notices.pdf}</p>
+                               </a>
+                            </tr>
+                           </div>
+                           <center>
+                          <tr>
+                              
+                                <a className="btn btn-danger" onClick={() =>this.onDelete(notices._id)}>
+                                   &nbsp;Delete  <i className="fas fa-trash-alt"></i>
                                  </a>
-                                 </td>
-                             <td>{notices.date}</td>
-                             <td>{notices.description}</td>
-                            
-                             <td>
-                                 
-                                 &nbsp;
-                                 <a className="btn btn-danger"  onClick={() =>this.onDelete(notices._id)}>
-                                     <i className="fas fa-trash-alt"></i>&nbsp;Delete
-                                 </a>
-                             </td>
-                         </tr>
-                     ))}
-                 </tbody>
-             </table>
-          </div> 
+                             <hr style={{width:"1200px"}}/> 
+                          </tr>
+                          </center>
+                       </tr>
+                       
+                      
+                   ))}
+               </tbody>
+           </table>
+        </div> 
+        </div>
       )
                      }
  }
+
