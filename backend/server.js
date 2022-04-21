@@ -9,7 +9,11 @@ const app = express();
 
 //import route
 const NoticeRoutes = require('./Routes/AdminNotice');
+
 const StudentRoutes = require("./Routes/Students")
+
+const PDFRoutes = require('./Routes/AdminPDF');
+
 
 
 //app middleware
@@ -18,7 +22,11 @@ app.use(cors());
 //app.use(multer());
 
 app.use(NoticeRoutes);
+
 app.use(StudentRoutes);
+
+app.use(PDFRoutes);
+
 
 
 const PORT = 8001;

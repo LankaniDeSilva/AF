@@ -3,7 +3,11 @@ import axios from "axios";
 
 const set={
   color: 'blue',
-  
+}
+const button={
+  background:'pink',
+  width:'100px',
+  height:'30px'
 }
 
 
@@ -32,19 +36,44 @@ const set={
 
     return(
        <div>
-      
-     
+         <center>
 
+       <table>
+              <tr>
+                  <td>
+        <div style={{padding:"50px", backgroundColor:'orange',borderRadius:" 10px", marginRight:"100px", borderLeft:"6px solid black", borderRight:"6px solid black"}}>
+        <img src="../images/admin.jpg" style={{width:'120px', height:'120px', borderRadius:"100px" }}/><br/><br/>
         <center>
-        <div style={{margin:"10%", padding:"50px", backgroundColor:'orange',borderColor:" solid" }}>
+            <a href="">
+            <button type="button" class="btn btn-secondary">Secondary</button>
+            </a><br/><br/>
+            <a href="">
+            <button type="button" class="btn btn-secondary">Secondary</button>
+            </a><br/><br/>
+            <a href="">
+            <button type="button" class="btn btn-secondary">Secondary</button>
+            </a><br/><br/>
+            <a href="">
+            <button type="button" class="btn btn-secondary">Secondary</button>
+            </a><br/><br/>
+            <a href="">
+            <button type="button" class="btn btn-secondary">Secondary</button>
+            </a>
+            </center>
+          </div>
+          </td>
+          <td>
+        <center>
+        <div >
           <table>
               <tr>
                   <td>
-                  <center>
-                  <h1 style={set}>Add Notice</h1>
-                  </center>
-         <form onSubmit={sendData}>
+                  
+         <form onSubmit={sendData} style={{margin:"0%", padding:"50px", backgroundColor:'',border:"2px solid blue", borderRadius:"10px" }}>
    
+                 <center>
+                  <h1 style={{fontFamily:"Abel"}}>Add Notice</h1>
+                  </center>
               <label style={{fontSize:"20px"}}>Enter Topic : </label><br/>
                  <input type="text" id="name"  style={{borderRadius:"15px", width:"400px", height:"40px"}}
                     onChange={(e)=>{
@@ -58,7 +87,7 @@ const set={
                 }} /><br/>
 
               <label style={{fontSize:"20px"}}>Enter Notice : </label><br/>
-                 <input type="box" id="name"  style={{borderRadius:"15px", width:"400px", height:"40px"}}
+                 <textarea id="editor" name="editor" style={{borderRadius:"15px", width:"400px", height:"40px"}}
                     onChange={(e)=>{
                           setdescription(e.target.value);
                 }} /><br/><br/>
@@ -68,7 +97,7 @@ const set={
          </form>
          </td>
          <td>
-             <img src="../image/noticeman.jpg" style={{width:'150px', height:'300px', paddingLeft:"20px"}}/>
+             <img src="../images/submit.webp" style={{width:'400px', height:'400px'}}/>
          </td>
          </tr>
          </table>
@@ -76,7 +105,10 @@ const set={
 
 </center>
 
-
+</td>
+</tr>
+</table>
+</center>
 </div>
     )
 }
